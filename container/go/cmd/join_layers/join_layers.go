@@ -21,7 +21,6 @@ import (
 	"os"
 	"strings"
 
-	legacyTarball "github.com/google/go-containerregistry/pkg/legacy/tarball"
 	v1 "github.com/google/go-containerregistry/pkg/v1"
 	"github.com/google/go-containerregistry/pkg/v1/tarball"
 
@@ -108,7 +107,7 @@ func writeOutput(outputTarball string, tagToConfigs, tagToBaseManifests map[name
 	if err != nil {
 		return errors.Wrapf(err, "unable to create image tarball file %q for writing", outputTarball)
 	}
-	return legacyTarball.MultiWrite(refToImage, o)
+	return tarball.MultiRefWrite(refToImage, o)
 }
 
 func main() {
